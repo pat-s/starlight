@@ -1,5 +1,6 @@
 ---
 import Icon from '../user-components/Icon.astro';
+import { formatLabel } from '../utils/format-label';
 
 const { dir, pagination } = Astro.locals.starlightRoute;
 const { prev, next } = pagination;
@@ -14,7 +15,7 @@ const isRtl = dir === 'rtl';
 				<span>
 					{Astro.locals.t('page.previousLink')}
 					<br />
-					<span class="link-title">{prev.label}</span>
+					<span class="link-title" set:html={formatLabel(prev.label)} />
 				</span>
 			</a>
 		)
@@ -26,7 +27,7 @@ const isRtl = dir === 'rtl';
 				<span>
 					{Astro.locals.t('page.nextLink')}
 					<br />
-					<span class="link-title">{next.label}</span>
+					<span class="link-title" set:html={formatLabel(next.label)} />
 				</span>
 			</a>
 		)

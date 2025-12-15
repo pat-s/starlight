@@ -1,5 +1,6 @@
 ---
 import type { TocItem } from '../../utils/generateToC';
+import { formatLabel } from '../../utils/format-label';
 
 interface Props {
 	toc: TocItem[];
@@ -15,7 +16,7 @@ const { toc, isMobile = false, depth = 0 } = Astro.props;
 		toc.map((heading) => (
 			<li>
 				<a href={'#' + heading.slug}>
-					<span>{heading.text}</span>
+					<span set:html={formatLabel(heading.text)} />
 				</a>
 				{heading.children.length > 0 && (
 					<Astro.self toc={heading.children} depth={depth + 1} isMobile={isMobile} />
